@@ -74,10 +74,6 @@ export default function Sidenav({ menuItems, children }) {
     return () => window.removeEventListener("resize", handleResize);
   }, [darkMode]);
 
-  // useEffect(() => {
-
-  // }, [darkMode]);
-
   const toggleTheme = () => {
     setDarkMode(!darkMode);
   };
