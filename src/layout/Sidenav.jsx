@@ -173,7 +173,7 @@ export default function Sidenav({ menuItems, children }) {
         {/* Main Content */}
         <Box
           sx={{
-            marginTop: "64px",
+            marginTop: "50px",
             padding: 3,
             width: isMobile
               ? "100%"
