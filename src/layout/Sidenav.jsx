@@ -65,9 +65,7 @@ export default function Sidenav({ menuItems, children }) {
 
     const handleResize = () => {
       setIsMobile(window.innerWidth < 600);
-      if (window.innerWidth < 600) {
-        setOpen(false); // Auto-close sidebar on mobile
-      }
+      setOpen(window.innerWidth >= 600);
     };
 
     window.addEventListener("resize", handleResize);

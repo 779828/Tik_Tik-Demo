@@ -1,10 +1,11 @@
 import React from "react";
+import UsersTable from "../utils/UsersTable";
 
 const Admin = () => {
   return (
-    <div>
-      <h1>Admin</h1>
-    </div>
+    <>
+      <UsersTable />
+    </>
   );
 };
 
