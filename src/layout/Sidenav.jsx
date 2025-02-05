@@ -110,7 +110,11 @@ export default function Sidenav({ menuItems, children }) {
               color="inherit"
               onClick={() => setOpen(!open)}
               edge="start"
-              sx={{ marginRight: 2 }}
+              sx={{
+                marginRight: 2,
+                fontSize: 25,
+                color: theme.palette.text.primary,
+              }}
             >
               <MenuIcon />
             </IconButton>
