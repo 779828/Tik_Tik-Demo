@@ -4,7 +4,6 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-// import { useAuth } from "./authContext";
 import Sidenav from "./layout/Sidenav";
 import Dashboard from "./components/Dashboard";
 import Admin from "./components/Admin";
@@ -81,7 +80,6 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        {/* Protect Login Page - Redirect Authenticated Users */}
         <Route path="/login" element={<Login />} />
 
         {/* Main App with Sidebar */}

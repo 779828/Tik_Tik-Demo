@@ -194,6 +194,14 @@ export default function Sidenav({ menuItems, children }) {
           variant={isMobile ? "temporary" : "permanent"}
           open={open}
           onClose={() => setOpen(false)}
+          sx={{
+            "& .MuiDrawer-paper": {
+              height: "100%",
+              overflowY: "scroll",
+              msOverflowStyle: "none",
+              scrollbarWidth: "none",
+            },
+          }}
         >
           <DrawerHeader>
             <Typography variant="h6" noWrap>
@@ -240,6 +248,10 @@ export default function Sidenav({ menuItems, children }) {
               easing: theme.transitions.easing.sharp,
               duration: theme.transitions.duration.standard,
             }),
+            height: "calc(100vh - 50px)",
+            overflowY: "scroll",
+            msOverflowStyle: "none",
+            scrollbarWidth: "none",
           }}
         >
           {children}
