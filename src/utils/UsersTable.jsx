@@ -58,7 +58,13 @@ const UserTable = () => {
 
   return (
     <Paper sx={{ width: "100%", overflow: "hidden" }}>
-      <TableContainer>
+      <TableContainer
+        sx={{
+          overflowX: "auto",
+          msOverflowStyle: "none",
+          scrollbarWidth: "none",
+        }}
+      >
         <Table>
           <TableHead>
             <TableRow>
@@ -103,6 +109,11 @@ const UserTable = () => {
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
+        sx={{
+          overflowX: "auto",
+          msOverflowStyle: "none",
+          scrollbarWidth: "none",
+        }}
       />
 
       {/* Edit Dialog */}
