@@ -16,6 +16,10 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { useNavigate } from "react-router-dom";
+import { Button, Menu, MenuItem } from "@mui/material";
 
 // icons
 import MenuIcon from "@mui/icons-material/Menu";
@@ -51,13 +55,14 @@ const Drawer = styled(MuiDrawer)(({ theme, open }) => ({
 }));
 
 export default function Sidenav({ menuItems, children }) {
+  const navigate = useNavigate();
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem("theme") === "light" ? false : true;
   });
 
   const [open, setOpen] = useState(window.innerWidth >= 600);
-
   const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   // Handle window resize
   useEffect(() => {
@@ -74,6 +79,19 @@ export default function Sidenav({ menuItems, children }) {
 
   const toggleTheme = () => {
     setDarkMode(!darkMode);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
+  const handleMenuClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
   };
 
   const theme = createTheme({
@@ -130,6 +148,44 @@ export default function Sidenav({ menuItems, children }) {
             <IconButton onClick={toggleTheme} color="inherit">
               {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
             </IconButton>
+
+            {/* Account and Logout Button for Desktop */}
+            {!isMobile && (
+              <>
+                <Button
+                  variant="outlined"
+                  color="inherit"
+                  startIcon={<AccountCircleIcon />}
+                  sx={{ mx: 1 }}
+                >
+                  Account
+                </Button>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  startIcon={<LogoutIcon />}
+                  onClick={handleLogout}
+                >
+                  Logout
+                </Button>
+              </>
+            )}
+
+            {/* Account and Logout Menu for Mobile */}
+            {isMobile && (
+              <IconButton color="inherit" onClick={handleMenuClick}>
+                <AccountCircleIcon />
+              </IconButton>
+            )}
+
+            <Menu
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleMenuClose}
+            >
+              <MenuItem onClick={handleMenuClose}>Account</MenuItem>
+              <MenuItem onClick={handleLogout}>Logout</MenuItem>
+            </Menu>
           </Toolbar>
         </AppBar>
 

@@ -4,6 +4,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+// import { useAuth } from "./authContext";
 import Sidenav from "./layout/Sidenav";
 import Dashboard from "./components/Dashboard";
 import Admin from "./components/Admin";
@@ -21,6 +22,7 @@ import { BsWatch } from "react-icons/bs";
 import { FaUsers } from "react-icons/fa";
 import { IoMdFitness, IoIosNotifications } from "react-icons/io";
 import { TbReportSearch } from "react-icons/tb";
+import Login from "./layout/Login";
 
 const menuItems = [
   {
@@ -78,15 +80,32 @@ const menuItems = [
 const App = () => {
   return (
     <Router>
-      <Sidenav menuItems={menuItems}>
-        <Routes>
-          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+      <Routes>
+        {/* Protect Login Page - Redirect Authenticated Users */}
+        <Route path="/login" element={<Login />} />
 
-          {menuItems.map((item, index) => (
-            <Route key={index} path={item.path} element={item.component} />
-          ))}
-        </Routes>
-      </Sidenav>
+        {/* Main App with Sidebar */}
+        <Route
+          path="*"
+          element={
+            <Sidenav menuItems={menuItems}>
+              <Routes>
+                <Route
+                  path="/"
+                  element={<Navigate to="/dashboard" replace />}
+                />
+                {menuItems.map((item, index) => (
+                  <Route
+                    key={index}
+                    path={item.path}
+                    element={item.component}
+                  />
+                ))}
+              </Routes>
+            </Sidenav>
+          }
+        />
+      </Routes>
     </Router>
   );
 };
