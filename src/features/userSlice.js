@@ -1,12 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_URL = "https://jsonplaceholder.typicode.com/users";
+const API_URL = "https://randomuser.me/api/?results=100";
 
 // Fetch users
 export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
   const response = await axios.get(API_URL);
-  return response.data;
+  return response.data.results.map((user) => ({
+    id: user.login.uuid,
+    name: `${user.name.first} ${user.name.last}`,
+    email: user.email,
+    picture: user.picture.thumbnail,
+  }));
 });
 
 // Delete a user
