@@ -73,7 +73,7 @@ const UsersTable = () => {
   ];
 
   return (
-    <div style={{ height: 735, width: "100%" }}>
+    <div style={{ height: 735, width: "100%", marginTop: 10 }}>
       <DataGrid
         rows={users}
         columns={columns}
