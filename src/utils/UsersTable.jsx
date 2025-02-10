@@ -10,6 +10,8 @@ import {
   DialogContent,
   DialogTitle,
 } from "@mui/material";
+import { FaEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 
 const UsersTable = () => {
   const dispatch = useDispatch();
@@ -57,7 +59,7 @@ const UsersTable = () => {
             color="primary"
             onClick={() => handleEditClick(params.row)}
           >
-            Edit
+            <FaEdit />
           </Button>
           <Button
             variant="contained"
@@ -65,7 +67,7 @@ const UsersTable = () => {
             onClick={() => handleDelete(params.row.id)}
             style={{ marginLeft: 8 }}
           >
-            Delete
+            <MdDelete />
           </Button>
         </>
       ),
@@ -73,19 +75,28 @@ const UsersTable = () => {
   ];
 
   return (
-    <div style={{ height: 735, width: "100%", marginTop: 10 }}>
+    <div
+      style={{ height: 735, width: "100%", marginTop: 10, overflow: "hidden" }}
+    >
       <DataGrid
         rows={users}
         columns={columns}
         loading={loading}
-        pageSizeOptions={[10, 20, 50]}
+        pageSizeOptions={[12, 24, 60]}
         pagination
         initialState={{
           pagination: {
-            paginationModel: { pageSize: 12 },
+            paginationModel: { pageSize: 24 },
+          },
+        }}
+        sx={{
+          "& .MuiDataGrid-virtualScroller": {
+            scrollbarWidth: "none",
+            "&::-webkit-scrollbar": { display: "none" },
           },
         }}
       />
+
       {/* Edit Dialog */}
       <Dialog open={open} onClose={() => setOpen(false)}>
         <DialogTitle>Edit User</DialogTitle>
