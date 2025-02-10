@@ -82,7 +82,7 @@ export default function Header({
               </Button>
               <Button
                 variant="contained"
-                color="secondary"
+                color="error"
                 startIcon={<LogoutIcon />}
                 onClick={handleLogout}
               >
