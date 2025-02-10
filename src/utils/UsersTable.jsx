@@ -86,7 +86,7 @@ const UsersTable = () => {
         pagination
         initialState={{
           pagination: {
-            paginationModel: { pageSize: 24 },
+            paginationModel: { pageSize: 12 },
           },
         }}
         sx={{
