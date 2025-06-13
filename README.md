@@ -24,7 +24,7 @@ Supabase: Backend for authentication and data management (shared with the mobile
 Installation
 
 Clone the Repository:
-git clone https://github.com/your-username/watch-admin-panel.git
+git clone (https://github.com/779828/Tik_Tik-Demo)
 cd watch-admin-panel
 
 Install Dependencies:
